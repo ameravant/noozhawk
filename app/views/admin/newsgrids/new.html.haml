@@ -1,0 +1,6 @@
+- content_for :meta_title do
+  New Newsgrid
+
+%h1= yield(:meta_title).strip
+- form_for [:admin, @newsgrid] do |f|
+  = render :partial => "form", :locals => { :f => f }

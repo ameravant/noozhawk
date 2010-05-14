@@ -1,0 +1,9 @@
+= f.error_messages
+%dl
+  %dt= f.label :title
+  %dd= f.text_field :title
+  %dt= f.label :time_frame, "Show articles published within the past"
+  %dd
+    = f.text_field :time_frame, :size => 4, :maxlength => 4
+    %span= " hours"
+= f.submit "Save Newsgrid"
