@@ -9,9 +9,10 @@
         - unless image.caption.blank?
           .image-caption= image.caption
     -elsif size == "large"
-      = tag(:img, :src => "#{image.featured}", :class => "large_image", :alt => image.image_title, :title => image.image_title)
+      = tag(:img, :src => "#{image.image(:large)}", :class => "large_image", :alt => image.image_title, :title => image.image_title)
       - if !image.caption.blank?
         %span.caption= image.caption
+      
     -elsif size == "original"
       = tag(:img, :src => "#{image.image}", :class => "large_image", :alt => image.image_title, :title => image.image_title)
     -elsif size == "clear_medium"
@@ -23,3 +24,5 @@
     = tag(:img, :src => "#{image.large}", :class => "large_image", :alt => image.image_title, :title => image.image_title)
     
 
+  = #debug Paperclip::Geometry.from_file("#{RAILS_ROOT}/public#{image.image(:medium)}")
+  = #debug Paperclip(image.image(:medium)).size
