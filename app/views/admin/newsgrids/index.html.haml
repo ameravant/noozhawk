@@ -1,0 +1,29 @@
+- content_for :meta_title do
+  = "Newsgrids"
+
+%h1= large_icon('Folder2') + ' ' + yield(:meta_title).strip
+
+%div.box
+  %span.hmenu
+    = icon "Plus", new_admin_newsgrid_path
+    = link_to "Make a new Newsgrid", new_admin_newsgrid_path
+  = clear
+
+%br
+
+%table{ :cellspacing => "0" }
+  %thead
+    %tr
+      %th Title
+      %th Time Frame
+      %th.center Options
+  %tbody
+    - for newsgrid in @newsgrids do
+      %tr[newsgrid]{ :class => cycle('odd','even') }
+        %td= link_to h(newsgrid.title), edit_admin_newsgrid_path(newsgrid)
+        %td= newsgrid.time_frame.to_s + " hours"
+        %td.center
+          = icon "Write", edit_admin_newsgrid_path(newsgrid)
+          = trash_icon(newsgrid, admin_newsgrid_path(newsgrid), "#{newsgrid.title}")
+
+%br
