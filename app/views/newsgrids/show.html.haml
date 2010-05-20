@@ -2,6 +2,6 @@
   -for article in @articles
     %li
       %span.title=article.title
-      %span.blurb=article.blurb
+      %span.blurb=article.description
       %span.date=article.published_at
       %span.image=image_tag(article.images.first.image.url(:thumb), :class => "icon") if article.images.any?
