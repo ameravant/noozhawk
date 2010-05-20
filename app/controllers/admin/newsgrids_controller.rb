@@ -32,6 +32,6 @@ class Admin::NewsgridsController < AdminController
   end
   private
   def get_newsgrid
-    @newsgrid = Newsgrid.find(params[:newsgrid_id])
+    @newsgrid = Newsgrid.find(params[:id])
   end
 end

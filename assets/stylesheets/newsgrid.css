@@ -1,0 +1,87 @@
+body {
+	padding:0;
+	background:black;
+}
+span.today {
+	float:right;
+	color:white;
+	margin:-20px 22px 0px 4px;
+}
+#grid-logo {
+	background:black;
+	height: 50px;
+	margin:0;
+	padding:0;
+	width:990px;
+}
+#grid-logo p {
+	color:gainsboro;
+	font-size:1.8em;
+	font-family:new times roman;
+	margin-left: 3em;
+}
+#grid-logo p span {
+	color:orange;
+	font-family:georgia sans-serif;
+	font-size: 75%;
+}
+span.back-home {
+	background:#4e4d4d;
+	float:right;
+	margin: 4px 10px 10px 10px;
+	color:#e4e4e4;
+	padding:5px 15px 5px 15px;
+	-moz-border-radius:20px;
+	border:3px solid #898989;
+}
+span.back-home a {
+	color:white;
+	text-decoration:none;
+}
+span.back-home a:hover {
+	color:orange;
+}
+ul#grid {
+	list-style-type:none;
+	padding:0;
+	margin-left:3%;
+	background:#fff;
+	width:1000px;
+}
+#grid li {
+	width:190px;
+	border: 1px solid gainsboro;
+	float:left;
+	height: 190px;
+	font-size: 85%;
+	padding: 3px;
+	background:#fff;
+}
+#grid li h2{
+  width: 65%;
+}
+#grid li h2, #grid li h2 a {
+	font-size:1.2em;
+	color:#375587;
+	padding:0;
+	margin:0 0 10px 0;
+	float:left;
+	text-decoration:none;
+}
+#grid li h2 a:hover {
+	text-decoration:underline;
+	cursor:pointer;
+	cursor:hand;
+}
+#grid li p {
+	font-size:1.1em;
+	color:#555571;
+	padding:0;
+	margin:10px 0 0 0;
+}
+span.date {
+	color:#990000;
+	font-size:.8em;
+	clear:both;
+	display:block;
+}

@@ -1,7 +1,14 @@
+%div#grid-logo
+  %span.today= Time.now.strftime('%a, %b %d, %Y')
+  %span.back-home= link_to "Noozhawk Home", "/"
+  %p
+    NOOZHAWK 
+    %span News Grid
 %ul#grid
-  -for article in @articles
-    %li
-      %span.title=article.title
-      %span.blurb=article.description
-      %span.date=article.published_at
-      %span.image=image_tag(article.images.first.image.url(:thumb), :class => "icon") if article.images.any?
+  -if @articles
+    -for article in @articles
+      %li
+        %span.image=image_tag(article.images.first.image.url(:thumb), :class => "icon") if article.images.any?
+        %h2=link_to article.title, article
+        %span.date=article.published_at.strftime('%a, %b %d, %Y')
+        %p=article.description

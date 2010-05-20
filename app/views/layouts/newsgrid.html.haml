@@ -1,0 +1,10 @@
+!!! Traditional
+%html{html_attrs('en')}
+  %head
+    %meta{'http-equiv' => "Content-type", :content => "text/html; charset=utf-8"}
+    %title= @content_for_meta_title.blank? ? @cms_config['website']['name'] : "#{yield(:meta_title).strip} - #{@cms_config['website']['name']}"
+    - unless @content_for_meta_description.blank?
+      %meta{:name => "description", :content => yield(:meta_description).strip }
+    = stylesheet_link_tag "/plugin_assets/noozhawk/stylesheets/newsgrid.css"
+  %body  
+    =yield

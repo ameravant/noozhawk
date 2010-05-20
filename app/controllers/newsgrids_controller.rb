@@ -1,5 +1,6 @@
 class NewsgridsController < ApplicationController
   before_filter :get_page
+  layout 'newsgrid'
   def show
     @newsgrid = Newsgrid.find(params[:id])
     @articles = @newsgrid.stories
