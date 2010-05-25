@@ -6,7 +6,7 @@
     -elsif size == "medium"
       %div{:class => "images #{css_class}"}
         - begin
-          - if Paperclip::Geometry.from_file("#{RAILS_ROOT}/public#{image.image(:original)}").width < 250
+          - if Paperclip::Geometry.from_file("#{image.image(:original)}").width < 250
             = tag(:img, :src => image.thumbnail, :alt => image.image_title)
           - else
             = link_to(tag(:img, :src => image.thumbnail, :alt => image.image_title), image.image.url, :title => image.image_title, :class => "fancy")
