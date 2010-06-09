@@ -1,0 +1,20 @@
+body { font-family: Georgia, Times, serif; }
+.leaderboard { text-align: center; }
+.inset { border-bottom:1px solid #CCCCCC; border-top:1px solid #CCCCCC; float:left; margin:0 15px 15px 0; padding:2px; }
+#menu-outer, .submenu-outer { font-family: Times, Arial, Sans-Serif; }
+#menu-inner  { font-size: .8em; line-height: 25px; height: 25px; }
+#menu-outer { background: #333; border-top: 1px solid #222; }
+#menu-inner li a { color: #eee; height: 25px; line-height: 25px; }
+#menu-inner li a:hover { color: #fff; background: #A22921; }
+#menu-inner li.selected a { color: #222; background: #DFDFDF; }
+
+.top-logo #menu-outer { padding: 0 !important; height: 25px; }
+.submenu-middle, .submenu-inner, #menu-middle, #menu-inner { line-height: 25px; height: 25px; }
+.submenu-inner { line-height: 25px; height: 25px; font-size: .8em; }
+.submenu-inner li a { line-height: 25px; height: 25px; }
+.submenu-inner li a:hover { color: #A22921; }
+.submenu-bottom { border-top: 1px solid #222; }
+a { color: #146aa1; }
+a:visited { color: #095687; }
+a:hover { color: #0079c6; }
+a:active { color #d80000; }

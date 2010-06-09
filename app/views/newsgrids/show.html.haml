@@ -1,0 +1,27 @@
+%span.today= Time.now.strftime('%a, %b %d, %Y')
+#grid
+  %ul
+    -if @articles
+      -for article in @articles
+        %li{:class => cycle("odd-column odd-row", "even-column odd-row", "odd-column odd-row", "even-column odd-row", "odd-column even-row", "even-column even-row", "odd-column even-row", "even-column even-row")}
+          %div
+            =link_to(image_tag(article.images.first.image.url(:square)), article) if article.images.any?
+            %h2=link_to article.title, article
+            %span.date=article.published_at.strftime('%a, %b %d, %Y')
+            %p=article.description
+  .clear
+- content_for :head do
+  =# stylesheet_link_tag "/plugin_assets/noozhawk/stylesheets/newsgrid.css"
+  %style{:type => "text/css"}
+    div#grid { border-top: 1px solid #bbb; border-left: 1px solid #bbb; }
+    div#grid ul { list-style: none; margin: 0; padding: 0; }
+    div#grid li { display: block; float: left; padding: 10px; border-bottom: 1px solid #bbb; border-right: 1px solid #bbb; }
+    div#grid li div { width: 196px; height: 200px; overflow: hidden; }
+    div#grid h2 { font-size: 1.1em; padding: 0; font-weight: bold; line-height: 1.2em; }
+    div#grid h2 a:hover { text-decoration: underline; }
+    div#grid .date { margin: 4px 0; line-height: 1.2em; font-size: .9em; color: #A70E13; }
+    li.odd-column.odd-row { background: #EFEFEF; }
+    li.odd-column.even-row { background: #FFF; }
+    li.even-column.even-row { background: #EFEFEF; }
+    div#grid p { margin: 0; line-height: 1.2em; }
+    div#grid img { float: right; margin: 0 0 5px 5px; }
