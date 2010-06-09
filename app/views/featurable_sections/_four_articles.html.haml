@@ -1,0 +1,5 @@
+%ul
+  - for feature in features[0..3]
+    %li
+      = link_to (image_tag(feature.featurable.images.sort_by(&:position).first.featured, :title => feature.featurable.title, :alt => feature.featurable.title), feature.featurable)
+      =feature.featurable.blurb
