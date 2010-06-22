@@ -38,7 +38,10 @@ namespace :db do
 
         if a.published_at <= Time.now
           rand(10).times do
-            c = a.comments.build # new comment for this article
+            #c = a.comments.build # new comment for this article
+            c = Comment.new
+            c.commentable_id = a.id
+            c.commentable_type = "Article"
             if rand(10) == 0
               # comment is from author
               c.name = user.name

@@ -1,5 +1,7 @@
-%ul
+%ul.recent_articles.list_of_links
   - for feature in features[0..3]
     %li
-      = link_to (image_tag(feature.featurable.images.sort_by(&:position).first.featured, :title => feature.featurable.title, :alt => feature.featurable.title), feature.featurable)
-      =feature.featurable.blurb
+      %h2= link_to feature.featurable.title, feature.featurable
+      %span.date= feature.featurable.published_at.strftime("%a, %B %d, %Y") if feature.featurable.class == Article
+      %p= feature.featurable.description.blank? ? truncate(h(feature.featurable.blurb), :length => 100) : truncate(h(feature.featurable.description), :length => 100)
+      = clear

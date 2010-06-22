@@ -14,7 +14,6 @@ body { font-family: Georgia, Times, serif; }
 .submenu-inner li a { line-height: 25px; height: 25px; }
 .submenu-inner li a:hover { color: #A22921; }
 .submenu-bottom { border-top: 1px solid #222; }
-a { color: #146aa1; }
-a:visited { color: #095687; }
-a:hover { color: #0079c6; }
-a:active { color #d80000; }
+
+.focus-feature h1 { margin: 0; padding: 0; }
+.focus-feature p { margin: 0; padding: 5px 0; }

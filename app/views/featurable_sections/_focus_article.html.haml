@@ -1,3 +1,5 @@
-.focus_feature
-  =features[0].featurable.title
-  =features[0].featurable.blurb
+.focus-feature
+  %h1= link_to(features[0].featurable.title, features[0].featurable)
+  = ninja_parse(simple_format(features[0].featurable.blurb))
+- content_for :head do
+  = stylesheet_link_tag "/plugin_assets/noozhawk/stylesheets/additional_styles.css"
