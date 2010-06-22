@@ -463,12 +463,16 @@ pageTracker._trackPageview();
       m.featurable_sections << fs
       m.save
     end
-    fs = FeaturableSection.create(:title => "four article", :image_required => true)
+    fs = FeaturableSection.create(:title => "Four articles", :image_required => true)
     fs.menus << m
     fs.save
-    fs = FeaturableSection.create(:title => "focus article", :image_required => false)
+    fs = FeaturableSection.create(:title => "Alert article", :image_required => false)
     fs.menus << m
     fs.save
+    fs = FeaturableSection.create(:title => "Blog Category", :image_required => true)
+    fs.menus << m
+    fs.save
+
   end
 end
 
