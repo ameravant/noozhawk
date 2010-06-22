@@ -1,0 +1,12 @@
+= f.error_messages
+
+%table{:cellspacing => "0"}
+  %tr
+    %td= f.label :name
+    %td= f.text_field :name
+  %tr
+    %td= f.label :sort_order
+    %td= f.text_field :sort_order
+    
+- fancy_submit admin_article_categories_path do
+  = f.submit "Save category"
