@@ -460,21 +460,21 @@ pageTracker._trackPageview();
     fake_products if @cms_config['modules']['product']
     fake_testimonials if @cms_config['modules']['product']
     
-    fs = FeaturableSection.first
-    m = Menu.first
-    if m and fs
-      m.featurable_sections << fs
-      m.save
-    end
-    fs = FeaturableSection.create(:title => "Four articles", :image_required => true)
-    fs.menus << m
-    fs.save
-    fs = FeaturableSection.create(:title => "Alert article", :image_required => false)
-    fs.menus << m
-    fs.save
-    fs = FeaturableSection.create(:title => "Blog Category", :image_required => true)
-    fs.menus << m
-    fs.save
+    # fs = FeaturableSection.first
+    #     m = Menu.first
+    #     if m and fs
+    #       m.featurable_sections << fs
+    #       m.save
+    #     end
+    #     fs = FeaturableSection.create(:title => "Four articles", :image_required => true)
+    #     fs.menus << m
+    #     fs.save
+    #     fs = FeaturableSection.create(:title => "Alert article", :image_required => false)
+    #     fs.menus << m
+    #     fs.save
+    #     fs = FeaturableSection.create(:title => "Blog Category", :image_required => true)
+    #     fs.menus << m
+    #     fs.save
 
   end
 end

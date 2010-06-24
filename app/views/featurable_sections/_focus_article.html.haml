@@ -1,5 +1,15 @@
 .focus-feature
-  %h1= link_to(features[0].featurable.title, features[0].featurable)
-  = ninja_parse(simple_format(features[0].featurable.blurb))
+  %ul.recent_articles.list_of_links
+    - for feature in features
+      %li
+        %h2= link_to feature.featurable.title, feature.featurable
+        %span.date= feature.featurable.published_at.strftime("%a, %B %d, %Y") if feature.featurable.class == Article
+        %p= feature.featurable.description.blank? ? truncate(h(feature.featurable.blurb), :length => 100) : truncate(h(feature.featurable.description), :length => 100)
+        = clear
+
 - content_for :head do
-  = stylesheet_link_tag "/plugin_assets/noozhawk/stylesheets/additional_styles.css"
+  %style{:type => "text/css"}
+    div.focus-feature { border-top: 1px dotted #A70E13; margin: 0 0 10px; }
+    div.focus-feature li { border-bottom: 1px dotted #A70E13; padding: 5px 0 8px; margin: 0; }
+    div.focus-feature h2 a { color: #a70e13; font-size: 1.3em; line-height: .9em; }
+    div.focus-feature h2 a:hover { color: #DF0D16; }
