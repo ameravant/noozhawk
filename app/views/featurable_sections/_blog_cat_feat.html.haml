@@ -15,7 +15,6 @@
             -already_feat << article.id
             =link_to(image_tag(article.images.first.image(:medium_thumb), :title => article.title, :alt => article.title), article) if article.images.any?
             %h3=link_to article.title, article
-            %p=article.description
         = cycle("", "", "", "<li class=\"clear\"></li>") 
 
   .clear

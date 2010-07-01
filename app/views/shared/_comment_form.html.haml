@@ -1,0 +1,61 @@
+- unless owner.comments.blank?
+  %h2#comments_list Comments
+  #comments
+    - for comment in owner.comments
+      -if owner.comments.last == comment and flash[:newcomment]
+        .newcomment{:id => "newcomment", :style => "background:#18DF0D;"}
+          =flash[:newcomment]
+      %div[comment]{ :class => cycle('odd','even') }
+        %span.comment_info.gray
+          %span.comment_created_at.hmenu
+            - if comment.created_at < 1.week.ago
+              = comment.created_at.strftime('%b %d, %Y')
+            - else
+              == #{time_ago_in_words(comment.created_at)} ago
+          = icon "Arrow1 Down", "#comment_form"
+          = link_to "Reply", "#comment_form", :onclick => "#comment_form", :onclick => "comment_reply('@#{h(comment.name)}');"
+          = trash_icon(comment, [:admin, owner, comment], "Comment #{comment.id}") if current_user and current_user.has_role(["Admin", "Editor", "Author"])
+        .comment_author
+          %span.comment_name.hmenu
+            - if CMS_CONFIG['modules']['profiles'] and !comment.person.blank? and !comment.person.profile.blank? and comment.person.has_role?("Author")
+              = link_to(comment.person.name, comment.person.profile)            
+            - else
+              = h(comment.name)
+        .comment_comment= auto_link(simple_format(h(comment.comment.strip)))
+
+
+%h2
+  %a{:name => "answer_form"}
+  Post a response
+#answer_form
+  - if CMS_CONFIG['site_settings']['require_login_for_comments'] and !logged_in?
+    Log in to post a comment.
+    =render :partial => "profiles/profile_session_form"
+  - else
+    - form_for :comment, :url => comments_path(owner), :html => { :onsubmit => "form_submitted('Posting your response...')" } do |f|
+      = f.error_messages :header_message => "Your comment could not be posted!", :message => nil
+      - if logged_in?
+        Name
+        %br
+        %strong= current_user.name
+        = f.hidden_field :name, :value => current_user.name
+        = f.hidden_field :email, :value => current_user.person.email
+        = f.hidden_field :person_id, :value => current_user.person.id
+      - else
+        = f.label :name
+        %br
+        = f.text_field :name
+        %br
+        = f.label :email 
+        %br
+        = f.text_field :email
+    
+      %br
+      = f.label :comment
+      %br
+      = f.text_area :comment, :size => "60x10", :style => "width: 550px;"
+      %br
+      = hidden_field_tag  "lastname", "", :id => "lastname"
+      = hidden_field_tag  "#{owner.class.to_s.downcase}_id", owner.id, :id => "#{owner.class.to_s.downcase}_id"
+      - fancy_submit do
+        = f.submit "Save comment"
