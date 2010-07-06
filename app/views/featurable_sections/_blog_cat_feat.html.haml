@@ -5,8 +5,8 @@
 #blog-cats
   %ul
     -article_cats.sort_by{|ac| ac.sort_order}.each do |ac|
-      -# article = ac.articles.published.reject{|a| a.features_count < 1}.first
-      - article = ac.articles.published.reject{|a| already_feat.include?(a.id)}.reject{|a| a.features_count < 1}.first
+      - article = ac.articles.published.reject{|a| a.features_count < 1}.first
+      - #article = ac.articles.published.reject{|a| already_feat.include?(a.id)}.reject{|a| a.features_count < 1}.first
       -if !article.blank?
         %li
           %div
@@ -21,9 +21,9 @@
 - content_for :head do
   =# stylesheet_link_tag "/plugin_assets/noozhawk/stylesheets/newsblog-cats.css"
   %style{:type => "text/css"}
-    div#blog-cats ul { list-style: none; margin: 0 0 0 -5px; padding: 0; }
+    div#blog-cats ul { list-style: none; margin: 0 -5px; padding: 0; }
     div#blog-cats li { display: block; float: left; padding: 5px; }
-    div#blog-cats li div { width: 126px; }
+    div#blog-cats li div { width: 130px; }
     div#blog-cats h2 { font-size: .85em; }
     div#blog-cats h2 a { color: #efefef; display: block; padding: 4px; line-height: 1.2em; background: #666; font-family: Tahoma, Arial, Sans-Serif; }
     div #blog-cats h2 a:hover { background: #A70E13; }
