@@ -5,16 +5,16 @@
 #blog-cats
   %ul
     -article_cats.sort_by{|ac| ac.sort_order}.each do |ac|
-      - article = ac.articles.published.reject{|a| a.features_count < 1}.first
-      - #article = ac.articles.published.reject{|a| already_feat.include?(a.id)}.reject{|a| a.features_count < 1}.first
+      -# article = ac.articles.published.reject{|a| a.features_count < 1}.first
+      - article = ac.articles.published.reject{|a| already_feat.include?(a.id)}.reject{|a| a.features_count < 1}.first
       -if !article.blank?
         %li
           %div
             %h2=link_to(ac.title, ac)
             -# Find an article if it is not in the already_feat array and is the first featured article in this section
-            -already_feat << article.id
-            =link_to(image_tag(article.images.first.image(:medium_thumb), :title => article.title, :alt => article.title), article) if article.images.any?
-            %h3=link_to article.title, article
+            - already_feat << article.id
+            = link_to(image_tag(article.images.first.image(:medium_thumb), :title => article.title, :alt => article.title), article) if article.images.any?
+            %h3= link_to article.title, article
         = cycle("", "", "", "<li class=\"clear\"></li>") 
 
   .clear
