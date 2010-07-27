@@ -12,20 +12,18 @@
           %div
             %h2=link_to(ac.title, ac)
             -# Find an article if it is not in the already_feat array and is the first featured article in this section
-            -already_feat << article.id
-            =link_to(image_tag(article.images.first.image(:medium_thumb), :title => article.title, :alt => article.title), article) if article.images.any?
-            %h3=link_to article.title, article
-            %p=article.description
+            - already_feat << article.id
+            = link_to(image_tag(article.images.first.image(:medium_thumb), :title => article.title, :alt => article.title), article) if article.images.any?
+            %h3= link_to article.title, article
         = cycle("", "", "", "<li class=\"clear\"></li>") 
 
   .clear
 - content_for :head do
   =# stylesheet_link_tag "/plugin_assets/noozhawk/stylesheets/newsblog-cats.css"
   %style{:type => "text/css"}
-    div#blog-cats { border-top: 1px dotted #bbb; }
-    div#blog-cats ul { list-style: none; margin: 0; padding: 0; }
+    div#blog-cats ul { list-style: none; margin: 0 -5px; padding: 0; }
     div#blog-cats li { display: block; float: left; padding: 5px; }
-    div#blog-cats li div { width: 126px; }
+    div#blog-cats li div { width: 130px; }
     div#blog-cats h2 { font-size: .85em; }
     div#blog-cats h2 a { color: #efefef; display: block; padding: 4px; line-height: 1.2em; background: #666; font-family: Tahoma, Arial, Sans-Serif; }
     div #blog-cats h2 a:hover { background: #A70E13; }

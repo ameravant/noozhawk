@@ -1,11 +1,25 @@
+%h2#quick-hits= link_to("Quick Hits", "/#{path_safe(@cms_config['site_settings']['blog_title'])}")
 %ul.recent_articles.list_of_links.top-four
   - for feature in features[0..3]
-    %li
-      %h2= link_to feature.featurable.title, feature.featurable
-      %span.date= feature.featurable.published_at.strftime("%a, %B %d, %Y") if feature.featurable.class == Article
+    %li.article_for_list
+      %h3= link_to feature.featurable.title, feature.featurable
+      %span.hmenu
+        - if CMS_CONFIG['modules']['profiles']
+          - if feature.featurable.person.profile.blank?
+            == By #{link_to h(feature.featurable.user.name), articles_path(:author => feature.featurable.user.id)}
+          - else
+            == By #{link_to h(feature.featurable.user.name), feature.featurable.person.profile}
+        - else
+          == By #{link_to h(feature.featurable.user.name), articles_path(:author => feature.featurable.user.id)}
+        == on #{feature.featurable.published_at.strftime("%b %d, %Y")}
       %p= feature.featurable.description.blank? ? truncate(h(feature.featurable.blurb), :length => 100) : truncate(h(feature.featurable.description), :length => 100)
       = clear
 
 - content_for :head do
   %style{:type => "text/css"}
-    ul.top-four li { border-top: 1px dotted #bbb; margin-top: 5px; }
+    ul.top-four li { border-bottom: 1px dotted #bbb; margin-bottom: 5px; padding-bottom: 5px; }
+    ul.top-four li.article_for_list a { display: inline !important; }
+    ul.top-four .hmenu { color: #737373; }
+    h2#quick-hits { font-size: .85em; padding-bottom: 0; }
+    h2#quick-hits a { color: #efefef; display: block; padding: 4px; line-height: 1.2em; background: #666; font-family: Tahoma, Arial, Sans-Serif; }
+    h2#quick-hits a:hover { background: #A70E13; }

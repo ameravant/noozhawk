@@ -2,14 +2,15 @@
   %ul.recent_articles.list_of_links
     - for feature in features
       %li
-        %h2= link_to feature.featurable.title, feature.featurable
-        %span.date= feature.featurable.published_at.strftime("%a, %B %d, %Y") if feature.featurable.class == Article
-        %p= feature.featurable.description.blank? ? truncate(h(feature.featurable.blurb), :length => 100) : truncate(h(feature.featurable.description), :length => 100)
+        %h2== <span class="breaking-news">Breaking News:</span> <span class="article-title">#{link_to(feature.featurable.title, feature.featurable)}</span>
         = clear
 
 - content_for :head do
   %style{:type => "text/css"}
-    div.focus-feature { border-top: 1px dotted #A70E13; margin: 0 0 10px; }
-    div.focus-feature li { border-bottom: 1px dotted #A70E13; padding: 5px 0 8px; margin: 0; }
-    div.focus-feature h2 a { color: #a70e13; font-size: 1.3em; line-height: .9em; }
-    div.focus-feature h2 a:hover { color: #DF0D16; }
+    div.focus-feature { margin: 0 0 10px; }
+    div.focus-feature li { background: #fff; }
+    div.focus-feature h2 { font-size: 1em; line-height: 1em; padding: 0; }
+    div.focus-feature h2 a { color: #a70e13; }
+    div.focus-feature h2 a:hover { color: #a70e13; text-decoration: underline; }
+    div.focus-feature .breaking-news { float: left; display: block; font-size: .8em; background: #333; color: #fff; padding: 4px; margin-right: 4px; line-height: 20px; font-weight: bold; text-transform: uppercase; font-family: tahoma, arial, sans-serif; }
+    div.focus-feature .article-title { padding-top: 3px; float: left; line-height: 20px; display: block; font-weight: bold; }
