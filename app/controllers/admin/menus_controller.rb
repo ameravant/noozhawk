@@ -48,7 +48,7 @@ class Admin::MenusController < AdminController
     elsif params[:article_category_id]
       @owner = ArticleCategory.find params[:article_category_id]
     elsif params[:event_category_id]
-      @owner = EventCategory.find params[:event_category_id]
+      @owner = EventCategory.find_by_permalink params[:event_category_id]
     elsif params[:gallery_id]
       @owner = Gallery.find params[:gallery_id]
     elsif params[:product_id]
