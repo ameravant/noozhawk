@@ -14,7 +14,7 @@ namespace :db do
       puts 'Faking articles...'
 
       ['Columnists','Green Hawk','Local News','Locals Only','Missing Pets','News Releases','Nonprofits', 'Obituaries', 'Opinion', 'Outdoors', 'Politics', 'School Zone'].each do |ac|
-        c = ArticleCategory.create(:name => ac, :sort_order => rand(10), :permalink => make_permalink(ac))
+        c = ArticleCategory.create(:name => ac, :permalink => make_permalink(ac))
       end
 
       15.times do |i|
@@ -426,7 +426,7 @@ namespace :db do
     user.person_id = person.id
     user.save
 
-    $USERS = User.all
+    $USERS = User.all(:conditions => "person_id NOT NULL")
 
     Setting.create(
       :newsletter_from_email => 'admin@ameravant.com',
