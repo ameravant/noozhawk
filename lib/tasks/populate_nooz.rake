@@ -13,8 +13,8 @@ namespace :db do
     def fake_articles
       puts 'Faking articles...'
 
-      ['Martial Arts','Spying','Assassination','Espionage','Illusion','Clothing/Image','Weapons & Tactics'].each do |ac|
-        c = ArticleCategory.create(:name => ac, :permalink => make_permalink(ac))
+      ['Columnists','Green Hawk','Local News','Locals Only','Missing Pets','News Releases','Nonprofits', 'Obituaries', 'Opinion', 'Outdoors', 'Politics', 'School Zone'].each do |ac|
+        c = ArticleCategory.create(:name => ac, :sort_order => rand(10), :permalink => make_permalink(ac))
       end
 
       15.times do |i|
@@ -298,7 +298,7 @@ namespace :db do
       puts 'Making permalinks...'
       for event in Event.all
         event.update_attribute(:permalink, make_permalink(event.name))
-        EventPrice.populate rand(10) do |p|
+        EventPriceOption.populate rand(10) do |p|
           p.event_id = event.id
           p.description = Populator.words(1..2)
           p.price = [5.0, 10.0, 15.0, 20.0, 50.0, 100.0]
@@ -334,19 +334,14 @@ namespace :db do
       ProductCategory.create(:name => 'Ninja Weapons', :permalink => 'ninja-weapons')
       ProductCategory.create(:name => 'Ninja Stealth Products', :permalink => 'ninja-stealth-products')
       Product.populate 10 do |p|
-        p.name = Faker::Company.catch_phrase.titleize
-        p.permalink = make_permalink(p.name)
+        p.title = Faker::Company.catch_phrase.titleize
+        p.permalink = make_permalink(p.title)
         p.description = random_pirate_paragraphs(at_least=1, at_most=2, for_html=false)
         p.blurb = random_pirate_sentence
-        p.price = [25, 50, 99, 149, 199, 399, 799]
-        p.sale_price = (p.price / 2) if rand(3) == 0
         p.featured = true if rand(10) == 0
         p.images_count = 0
         p.features_count = 0
         p.display_add_cart = 1
-        p.times_sold = 0
-        p.times_viewed = 0
-        p.product_line_id = [1]
         p.active = true
         p.deleted = false
         p.created_at = 1.year.ago..Time.now
@@ -355,6 +350,8 @@ namespace :db do
 
       for product in Product.all
         product.product_categories <<  ProductCategory.find(rand(ProductCategory.count) + 1)
+        po = ProductOption.create(:price => rand(30), :available => true)
+        product.product_options << po
       end
       Image.create(:title => "Katana", :viewable_id => 1, :viewable_type => "Product", :position => 8, :image_file_name => "00-7X128_2.jpg.jpeg", :image_content_type => "image/jpeg", :image_file_size => 54406)
       Image.create(:title => "Sais", :viewable_id => 2, :viewable_type => "Product", :position => 5, :image_file_name => "20-2312_1.jpg.jpeg", :image_content_type => "image/jpeg", :image_file_size => 48938)
@@ -448,7 +445,7 @@ var pageTracker = _gat._getTracker("UA-7311013-1");
 pageTracker._trackPageview();
 } catch(err) {}</script>'
     )
-
+    
     fake_assets # keep this line first
     fake_pages
     fake_events if @cms_config['modules']['events']
@@ -460,21 +457,21 @@ pageTracker._trackPageview();
     fake_products if @cms_config['modules']['product']
     fake_testimonials if @cms_config['modules']['product']
     
-    # fs = FeaturableSection.first
-    #     m = Menu.first
-    #     if m and fs
-    #       m.featurable_sections << fs
-    #       m.save
-    #     end
-    #     fs = FeaturableSection.create(:title => "Four articles", :image_required => true)
-    #     fs.menus << m
-    #     fs.save
-    #     fs = FeaturableSection.create(:title => "Alert article", :image_required => false)
-    #     fs.menus << m
-    #     fs.save
-    #     fs = FeaturableSection.create(:title => "Blog Category", :image_required => true)
-    #     fs.menus << m
-    #     fs.save
+    fs = FeaturableSection.first
+    m = Menu.first
+    if m and fs
+      m.featurable_sections << fs
+      m.save
+    end
+    fs = FeaturableSection.create(:title => "Four articles", :image_required => true)
+    fs.menus << m
+    fs.save
+    fs = FeaturableSection.create(:title => "Alert article", :image_required => false)
+    fs.menus << m
+    fs.save
+    fs = FeaturableSection.create(:title => "Blog Category", :image_required => true)
+    fs.menus << m
+    fs.save
 
   end
 end
