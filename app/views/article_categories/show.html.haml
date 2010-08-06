@@ -1,0 +1,15 @@
+- content_for :meta_title do
+  == #{@cms_config['site_settings']['article_title'].pluralize} by category:
+  = h @article_category.name
+%h1= yield(:meta_title).strip
+-if @article_category.permalink == "business"
+  = render :partial => "/featurable_sections/featurable_sections" , :locals => {:features => @features.reject{|f| f.featurable_section_id != 5}}unless (@features.reject{|f| f.featurable_section_id != 5}.empty?)
+-elsif @article_category.permalink == "green-hawk"
+  %h1 jason
+  = render :partial => "/featurable_sections/greenhawk" , :locals => {:features => @features.reject{|f| f.featurable_section_id != 5}}unless (@features.reject{|f| f.featurable_section_id != 5}.empty?)
+= render :partial => "/articles/sidebar"
+
+= render :partial => "/articles/articles_for_category", :locals => {:articles => @articles}
+
+- unless @articles.total_pages == 1
+  = will_paginate @articles
