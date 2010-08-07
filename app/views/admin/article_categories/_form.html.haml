@@ -7,6 +7,14 @@
   %tr
     %td= f.label :sort_order
     %td= f.text_field :sort_order
+%div
+  = f.label :alt_logo ,"Left Header Image"
+  = f.file_field :alt_logo
+  -if !@article_category.alt_logo_file_name.blank?
+    %br
+    = image_tag @article_category.alt_logo(:small)
+    = check_box_tag 'logo_remove'
+    = label_tag :remove_alt_logo, "Remove", :class => "inline"
     
 - fancy_submit admin_article_categories_path do
   = f.submit "Save category"

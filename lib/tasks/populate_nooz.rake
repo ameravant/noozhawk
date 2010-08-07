@@ -13,7 +13,7 @@ namespace :db do
     def fake_articles
       puts 'Faking articles...'
 
-      ['Columnists','Green Hawk','Local News','Locals Only','Missing Pets','News Releases','Nonprofits', 'Obituaries', 'Opinion', 'Outdoors', 'Politics', 'School Zone'].each do |ac|
+      ['Business', 'Columnists','Green Hawk','Local News','Locals Only','Missing Pets','News Releases','Nonprofits', 'Obituaries', 'Opinion', 'Outdoors', 'Politics', 'School Zone'].each do |ac|
         c = ArticleCategory.create(:name => ac, :permalink => make_permalink(ac))
       end
 
@@ -463,16 +463,10 @@ pageTracker._trackPageview();
       m.featurable_sections << fs
       m.save
     end
-    fs = FeaturableSection.create(:title => "Four articles", :image_required => true)
+    ["Four Articles", "Alert article", "Blog Category", "Greenhawk", "Business"].each do |title|
+    fs = FeaturableSection.create(:title => title, :image_required => true)
     fs.menus << m
     fs.save
-    fs = FeaturableSection.create(:title => "Alert article", :image_required => false)
-    fs.menus << m
-    fs.save
-    fs = FeaturableSection.create(:title => "Blog Category", :image_required => true)
-    fs.menus << m
-    fs.save
-
   end
 end
 
