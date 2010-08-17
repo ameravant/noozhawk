@@ -1,11 +1,9 @@
 -slice = (@articles.size/2)
-%p{:style => "text-align: center; margin: 10px;"}
-  <iframe id='a40ad004' name='a40ad004' src='http://d1.openx.org/afr.php?zoneid=6779&amp;cb=INSERT_RANDOM_NUMBER_HERE' framespacing='0' frameborder='no' scrolling='no' width='468' height='60'><a href='http://d1.openx.org/ck.php?n=ab0345ed&amp;cb=INSERT_RANDOM_NUMBER_HERE' target='_blank'><img src='http://d1.openx.org/avw.php?zoneid=6779&amp;cb=INSERT_RANDOM_NUMBER_HERE&amp;n=ab0345ed' border='0' alt='' /></a></iframe>
 = render :partial => "/articles/article_for_list", :collection => @articles[0...slice]
 %p{:style => "clear:both;text-align: center; margin: 10px;"}
-  <iframe id='a40ad004' name='a40ad004' src='http://d1.openx.org/afr.php?zoneid=6779&amp;cb=INSERT_RANDOM_NUMBER_HERE' framespacing='0' frameborder='no' scrolling='no' width='468' height='60'><a href='http://d1.openx.org/ck.php?n=ab0345ed&amp;cb=INSERT_RANDOM_NUMBER_HERE' target='_blank'><img src='http://d1.openx.org/avw.php?zoneid=6779&amp;cb=INSERT_RANDOM_NUMBER_HERE&amp;n=ab0345ed' border='0' alt='' /></a></iframe>
+  = @article_category.ad_code_1 if @article_category.ad_code_1
 = render :partial => "/articles/article_for_list", :collection => @articles[slice..-1]
 %p{:style => "clear:both;text-align: center; margin: 10px;"}
-  <iframe id='a40ad004' name='a40ad004' src='http://d1.openx.org/afr.php?zoneid=6779&amp;cb=INSERT_RANDOM_NUMBER_HERE' framespacing='0' frameborder='no' scrolling='no' width='468' height='60'><a href='http://d1.openx.org/ck.php?n=ab0345ed&amp;cb=INSERT_RANDOM_NUMBER_HERE' target='_blank'><img src='http://d1.openx.org/avw.php?zoneid=6779&amp;cb=INSERT_RANDOM_NUMBER_HERE&amp;n=ab0345ed' border='0' alt='' /></a></iframe>
+  = @article_category.ad_code_2 if @article_category.ad_code_2
 
 

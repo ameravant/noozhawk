@@ -7,14 +7,31 @@
   %tr
     %td= f.label :sort_order
     %td= f.text_field :sort_order
-%div
-  = f.label :alt_logo ,"Left Header Image"
-  = f.file_field :alt_logo
-  -if !@article_category.alt_logo_file_name.blank?
-    %br
-    = image_tag @article_category.alt_logo(:small)
-    = check_box_tag 'logo_remove'
-    = label_tag :remove_alt_logo, "Remove", :class => "inline"
-    
+-if ["green-hawk", "business"].include?(@article_category.permalink) 
+  %div
+    = f.label :alt_logo ,"Left Header Image"
+    = f.file_field :alt_logo
+    -if !@article_category.alt_logo_file_name.blank?
+      %br
+      = image_tag @article_category.alt_logo(:small)
+      = check_box_tag 'logo_remove'
+      = label_tag :remove_alt_logo, "Remove", :class => "inline"
+  %div
+    = f.label :top_banner_ad, "Top banner ad"
+    = f.file_field :top_banner_ad
+    -if !@article_category.top_banner_ad_file_name.blank?
+      %br
+      = image_tag @article_category.top_banner_ad(:small)
+      = check_box_tag 'top_banner_ad_remove'
+      = label_tag :remove_top_banner_ad, "Remove", :class => "inline"
+    = f.label :top_banner_url, "Top banner url"
+    = f.text_field :top_banner_url
+  %div
+    = f.label :ad_code_1, "Ad Code 1"
+    = f.text_area :ad_code_1, :size => '80x5'
+  %div
+    = f.label :ad_code_2, "Ad Code 2"
+    = f.text_area :ad_code_2, :size => '80x5'
+      
 - fancy_submit admin_article_categories_path do
   = f.submit "Save category"
