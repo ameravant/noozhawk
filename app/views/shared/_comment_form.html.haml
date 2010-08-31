@@ -17,7 +17,7 @@
           = trash_icon(comment, [:admin, owner, comment], "Comment #{comment.id}") if current_user and current_user.has_role(["Admin", "Editor", "Author"])
         .comment_author
           %span.comment_name.hmenu
-            - if CMS_CONFIG['modules']['profiles'] and !comment.person.blank? and !comment.person.profile.blank? and comment.person.has_role?("Author")
+            - if CMS_CONFIG['modules']['profiles'] and !comment.person.blank? and !comment.person.profile.blank? and comment.person.has_role("Author")
               = link_to(comment.person.name, comment.person.profile)            
             - else
               = h(comment.name)
