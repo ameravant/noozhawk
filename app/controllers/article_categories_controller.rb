@@ -1,7 +1,8 @@
 class ArticleCategoriesController < ApplicationController
   unloadable
-  add_breadcrumb 'Home', 'root_path'
-  before_filter :add_crumbs
+  # breadcrumbs somehow inherit from base modules causing double crumbs, need to see how this happens
+  # add_breadcrumb 'Home', 'root_path'
+  # before_filter :add_crumbs
   before_filter :find_page
   before_filter :find_articles_for_sidebar
 

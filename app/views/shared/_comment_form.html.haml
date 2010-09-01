@@ -23,6 +23,8 @@
               = h(comment.name)
         .comment_comment= auto_link(simple_format(h(comment.comment.strip)))
 
+#disclaimer
+  = @settings.comment_disclaimer if (!@settings.comment_disclaimer.blank? && @page.show_comment_disclaimer)
 
 %h2
   %a{:name => "answer_form"}
