@@ -3,7 +3,7 @@ class ProfilesController < ApplicationController
   require "#{Rails.root}/vendor/plugins/siteninja/siteninja_profiles/app/controllers/profiles_controller.rb"
   def index
     add_breadcrumb "Profiles", nil
-    profiles = params[:search].blank? ? Profile.standard : Profile.search_for(params[:search]).reject{|p| p.profile.blank?}.reject{|p| !p.profile.public?}.reject{|p| !p.has_role?("Author")}.sort_by{|p| p.last_name.downcase}
+    profiles = params[:search].blank? ? Profile.standard : Profile.search_for(params[:search]).reject{|p| p.profile.blank?}.reject{|p| !p.profile.public?}.reject{|p| !p.user.has_role("Author")}.sort_by{|p| p.last_name.downcase}
     @profiles = profiles.paginate(:page => params[:page], :per_page => 25)  
   end
   

@@ -17,12 +17,14 @@
           = trash_icon(comment, [:admin, owner, comment], "Comment #{comment.id}") if current_user and current_user.has_role(["Admin", "Editor", "Author"])
         .comment_author
           %span.comment_name.hmenu
-            - if CMS_CONFIG['modules']['profiles'] and !comment.person.blank? and !comment.person.profile.blank? and comment.person.has_role?("Author")
+            - if CMS_CONFIG['modules']['profiles'] and !comment.person.blank? and !comment.person.profile.blank? and comment.person.user and comment.person.user.has_role("Author")
               = link_to(comment.person.name, comment.person.profile)            
             - else
               = h(comment.name)
         .comment_comment= auto_link(simple_format(h(comment.comment.strip)))
 
+#disclaimer
+  = @settings.comment_disclaimer if (!@settings.comment_disclaimer.blank? && @page.show_comment_disclaimer)
 
 %h2
   %a{:name => "answer_form"}
