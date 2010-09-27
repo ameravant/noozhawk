@@ -7,6 +7,9 @@
   %tr
     %td= f.label :sort_order
     %td= f.text_field :sort_order
+  %tr
+    %td= f.label :column_id, "Side Column"
+    %td= collection_select(:article_category, :column_id, Column.all, :id, :title, :style => "width: 200px; margin: 0 0 0 0;")
 -if ["green-hawk", "business"].include?(@article_category.permalink) 
   %div
     = f.label :alt_logo ,"Left Header Image"

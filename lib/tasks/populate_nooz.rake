@@ -134,7 +134,7 @@ namespace :db do
         Page.create(:parent_id => home.id, :title => 'Members', :body => 'Members', :meta_title => "Members", :permalink => "members")
       contact_us = Page.create(:parent_id => home.id, :title => 'Contact Us', :body => '<h1>Contact SiteNinja</h1>', :meta_title => "Contact SiteNinja.com", :permalink => "inquire")
         Page.create(:parent_id => home.id, :title => 'Contact Us - Thank You', :body => '<h1>Message sent!</h1><p>Thank you for submitting an inquiry. We usually respond within 2 business days by email.', :meta_title => "Message sent", :permalink => "inquiry_received", :status => 'hidden', :show_in_footer => false)
-      Page.create(:title => 'Blog', :meta_title => 'Blog', :body => "blog", :permalink => "blog", :can_delete => false) if @cms_config['modules']['blog']
+      Page.create(:title => 'Blog', :meta_title => 'Blog', :body => "blog", :permalink => "blog", :can_delete => false, :column_id => 2, :show_article_cats => true) if @cms_config['modules']['blog']
       Page.create(:title => 'Products', :meta_title => 'Products', :body => "products", :permalink => "products", :can_delete => false) if @cms_config['modules']['product']
       Page.create(:title => 'Images', :meta_title => 'Galleries', :body => "galleries", :permalink => "galleries", :can_delete => false) if @cms_config['modules']['galleries']
        Page.create(:title => 'Links', :meta_title => 'Links', :body => "links", :permalink => "links", :can_delete => false) if @cms_config['modules']['links']
@@ -437,6 +437,10 @@ namespace :db do
       :events_range => 3,
       :tracking_code => ''
     )
+    
+    Plugin.create(:url => "git@github.com:ameravant/siteninja_profiles.git", :position => 11)
+    Plugin.create(:url => "git@github.com:ameravant/noozhawk.git", :position => 12)
+    Plugin.find_by_url("git@github.com:ameravant/siteninja_pages.git").update_attributes(:position => 13)
     
     fake_assets # keep this line first
     fake_pages
