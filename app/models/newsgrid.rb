@@ -3,6 +3,7 @@ class Newsgrid < ActiveRecord::Base
   validates_presence_of :time_frame
   has_many :menus, :as => :navigatable, :dependent => :destroy
   has_many :features, :as => :featurable, :dependent => :destroy
+  has_many :images, :as => :viewable, :dependent => :destroy
   has_permalink :title
   def to_param
     "#{self.id}-#{self.permalink}"
