@@ -19,7 +19,7 @@
 
 =# render :partial => "/shared/image_box", :locals => { :owner => @article } unless @article.images.empty?
 
-    
+= @article_category.ad_code_1 unless @article_category.ad_code_1.blank?
 .article_body
   = ninja_parse(@article.body.strip)
 
@@ -32,6 +32,7 @@
         = link_to asset.name, asset.file.url
         &mdash;
         = asset.file_file_name
+= @article_category.ad_code_2 unless @article_category.ad_code_2.blank?
 = render :partial => "/shared/sharethis"
 
 = clear
