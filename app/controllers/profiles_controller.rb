@@ -16,7 +16,7 @@ class ProfilesController < ApplicationController
     if @person.save
       profile = Profile.new(params[:profile])
       profile.person_id = @person.id
-      profile.public = true
+      profile.public = false
       profile.save
       redirect_to new_session_path
       flash[:notice] = "Thanks for joining! Please sign-in"
