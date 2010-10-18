@@ -2,9 +2,8 @@ class Admin::ArticleCategoriesController < AdminController
   unloadable # http://dev.rubyonrails.org/ticket/6001
   before_filter :authorization
   before_filter :find_article_category, :only => [ :edit, :update, :destroy ]
-  before_filter :add_crumbs
-  add_breadcrumb "Categories", "admin_article_categories_path", :except => [ :index, :destroy ]
-  add_breadcrumb "New Category", nil, :only => [ :new, :create ]
+  # before_filter :add_crumbs
+  # add_breadcrumb "New Category", nil, :only => [ :new, :create ]
   
   def index
     @article_categories = ArticleCategory.active

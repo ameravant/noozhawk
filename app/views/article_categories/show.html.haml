@@ -7,7 +7,7 @@
   = render :partial => "/featurable_sections/featurable_sections" , :locals => {:features => @features.reject{|f| f.featurable_section_id != 5}}unless (@features.reject{|f| f.featurable_section_id != 5}.empty?)
 -elsif @article_category.permalink == "green-hawk"
   = render :partial => "/featurable_sections/greenhawk" , :locals => {:features => @features.reject{|f| f.featurable_section_id != 5}}unless (@features.reject{|f| f.featurable_section_id != 5}.empty?)
-= render :partial => "/articles/sidebar"
+= render :partial => "/shared/side_column"
 
 = render :partial => "/articles/articles_for_category", :locals => {:articles => @articles}
 

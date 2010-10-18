@@ -11,6 +11,7 @@ class ArticleCategoriesController < ApplicationController
       @article_category = ArticleCategory.active.find(params[:id])
       @page = Page.find_by_permalink!('blog') if @article_category.menus.empty?
       @article_category.menus.empty? ? @menu = @page.menus.first : @menu = @article_category.menus.first
+      @side_column_sections = ColumnSection.all(:conditions => {:column_id => @article_category.column_id, :visible => true})
       @articles = @article_category.articles.published.paginate(:page => params[:page], :per_page => 10, :include => :article_categories)
       @features = @menu.featurable_sections.collect(&:features).flatten
       add_breadcrumb @article_category.name

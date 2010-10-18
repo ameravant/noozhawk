@@ -1,0 +1,42 @@
+- unless @cms_config["keys"]["google_maps"].blank? or !@show_site_search
+  - content_for :head do
+    ==<script src="http://www.google.com/jsapi?key=#{@cms_config["keys"]["google_maps"]}" type="text/javascript"></script>
+    <script language="Javascript" type="text/javascript">
+    //<![CDATA[
+
+    google.load("search", "1");
+
+    function OnLoad() {
+    // Create a search control
+    var searchControl = new google.search.SearchControl();
+
+    var siteSearch = new GwebSearch();
+    ==siteSearch.setUserDefinedLabel("#{@cms_config["website"]["domain"]}");
+    ==siteSearch.setSiteRestriction("#{@cms_config["website"]["domain"]}");
+    searchControl.addSearcher(siteSearch);
+    // Tell the searcher to draw itself and tell it where to attach
+    var drawOptions = new google.search.DrawOptions();
+    // tell the searcher to draw itself in tabbed mode
+    drawOptions.setDrawMode(google.search.SearchControl.DRAW_MODE_TABBED);
+    searchControl.draw(document.getElementById("searchcontrol"), drawOptions);
+
+    }
+    google.setOnLoadCallback(OnLoad);
+
+    //]]>
+    </script>
+    %style{:type => "text/css"}
+      div#searchcontrol form table td { padding: 0}
+      input.gsc-search-button { margin: 0 2px 0 10px; }
+      div.gsc-tabsArea, .gsc-resultsHeader { display: none; }
+      div.gs-visibleUrl-short { display: none; }
+      div.gs-visibleUrl-long { display: block !important; font-size: .85em; }
+      div.with-side-columns div.gsc-control { width: 150px; }
+      div.with-side-columns input.gsc-input { width: 75px; }
+      div.gsc-resultsbox-visible { position: absolute; background: #fff; padding: 10px; width: 280px; border: 1px solid #333; box-shadow: 5px 5px 2px rgba(0, 0, 0, .25); -moz-box-shadow: 5px 5px 2px rgba(0, 0, 0, .25); -webkit-box-shadow: 5px 5px 2px rgba(0, 0, 0, .25); margin-top: -30px; }
+      input.gsc-search-button { background:none repeat scroll 0 0 #CA3F44; color:#FFFFFF; }
+      td.gsc-branding-img { vertical-align:middle; width:65px; }
+  - content_for :side_column do
+    .side-column-section
+      <div id="searchcontrol">Loading...</div>
+  

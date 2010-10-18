@@ -67,6 +67,7 @@
       - else
         = stylesheet_link_tag "/plugin_assets/siteninja_core/templates/#{session[:template]}"
     = stylesheet_link_tag "/stylesheet/additional_styles.css" unless @settings.additional_styles.blank?
+    = stylesheet_link_tag "/stylesheets/noozhawk.css"
     
     - # Include galleryview for slideshow if one is used.
     - if @slideshow
@@ -90,6 +91,18 @@
     #wrapper-outer{:class => @cms_config['website']['logo_position'] == "top" ? "top-logo" : "inline-logo"}
       #wrapper-middle
         #wrapper-inner
+          #pre-header-outer
+            #pre-header-inner
+              = Time.now.strftime("%A, %B %d, %Y, %l:%M %p")
+              - unless logged_in?
+                #pre-header-login
+                  = link_to("Login", new_session_path)
+                  |
+                  = link_to("Register", new_profile_path, :class => "register")
+              - if !@settings.header_text.blank?
+                #pre-header-ad
+                  = @settings.header_text
+                =clear
           #header-outer
             #header-middle
               #header-inner
@@ -111,9 +124,8 @@
                 - if !@settings.header_right_file_name.blank? and !@admin
                   #header-right
                     = link_to(image_tag(@settings.header_right(:original), :alt => @cms_config['website']['name'], :title => @cms_config['website']['name']), @settings.header_right_url)
-                - if !@settings.header_text.blank?
-                  = @settings.header_text
                   = #@settings.header_text.gsub(/\#{ (.{0,}?) }/m) {|x| eval($1)}
+                = clear
           = render :partial => "/layouts/menu" unless @admin
           = yield :submenu if @content_for_submenu
           = yield :banner if @content_for_banner
