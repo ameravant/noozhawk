@@ -1,5 +1,5 @@
-#locals-only
-  %h2= link_to("Locals Only", ArticleCategory.find_by_name("Locals Only"))
+#locals-only.section-box
+  %h1= link_to("Locals Only", ArticleCategory.find_by_name("Locals Only"))
   %ul
     - for article in articles[0...5]
       %li
@@ -16,9 +16,9 @@
     div#locals-only ul { list-style: none; margin: 0 -5px; padding: 0; }
     div#locals-only li { display: block; float: left; padding: 5px; }
     div#locals-only li div { width: 176px; }
-    div#locals-only h2 { font-size: .85em; }
-    div#locals-only h2 a { color: #efefef; display: block; padding: 4px; margin-bottom: -5px; line-height: 1.2em; background: #666; font-family: Tahoma, Arial, Sans-Serif; }
-    div #locals-only h2 a:hover { background: #A70E13; }
+    div#locals-only h1 a { color: #fff; }
+    div#locals-only h1 a:hover { color: #fff; }
+    div #locals-only h2 a:hover { background: #A70E13; color: #fff; }
     div#locals-only h3 { font-size: 1em; padding: 0; font-weight: bold; line-height: 1.2em; }
     div#locals-only h3 a:hover { text-decoration: underline; }
     div#locals-only .date { margin: 4px 0; line-height: 1.2em; font-size: .9em; color: #A70E13; }
