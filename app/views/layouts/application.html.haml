@@ -153,11 +153,12 @@
             #footer-outer
               #footer-middle
                 #footer-inner
-                  = render :partial => "/layouts/footer_menu"
+                  = #render :partial => "/layouts/footer_menu"
                   = @settings.footer_text.gsub('#YEAR#', Date.today.year.to_s)
                   #footer_credits
                     Powered by 
                     = link_to "SiteNinja CMS.", "http://www.site-ninja.com"
+                = clear
     - if Rails.env.production? and !@admin and !@settings.tracking_code.blank?
       = @settings.tracking_code
   = yield :footer if @content_for_footer
