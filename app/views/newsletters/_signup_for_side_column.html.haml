@@ -1,7 +1,7 @@
 - content_for :side_column do
   .side-column-section
     .section-box      
-      %h1= @cms_config['site_settings']['signup_title'] ? (@cms_config['site_settings']['signup_title'].blank? ? "Sign Up" : @cms_config['site_settings']['signup_title']) : "Sign Up"
+      %h1.daily_noozhawk_heading= @cms_config['site_settings']['signup_title'] ? (@cms_config['site_settings']['signup_title'].blank? ? "Sign Up" : @cms_config['site_settings']['signup_title']) : "Sign Up"
       #newsletter-signup
         - if @cms_config['site_settings']['signup_description']
           = @cms_config['site_settings']['signup_description']
