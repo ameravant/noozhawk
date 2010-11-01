@@ -1,5 +1,5 @@
 #locals-only.section-box
-  %h1= link_to("Locals Only", ArticleCategory.find_by_name("Locals Only"))
+  %h1.locals_only_heading= link_to("Locals Only", ArticleCategory.find_by_name("Locals Only"))
   %ul
     - for article in articles[0...5]
       %li
