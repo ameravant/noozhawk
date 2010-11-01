@@ -121,6 +121,11 @@
                       - elsif @settings.header_text.blank?
                         %h1= link_to(@cms_config['website']['name'], "/")
                   = clear if @admin
+                  #social_media
+                    %ul
+                      %li= link_to("twitter", "http://twitter.com/Noozhawk", :class => "twitter")
+                      %li= link_to("facebook", "http://www.facebook.com/pages/Santa-Barbara-CA/Noozhawk/56331266716?v=wall&amp;viewas=1177542471", :class => "facebook")
+                      %li= link_to("Rss", "/article.rss", :class => "rss_media")
                 - if !@settings.header_right_file_name.blank? and !@admin
                   #header-right
                     = link_to(image_tag(@settings.header_right(:original), :alt => @cms_config['website']['name'], :title => @cms_config['website']['name']), @settings.header_right_url)
