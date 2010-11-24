@@ -1,4 +1,3 @@
-%h2#quick-hits= link_to("Quick Hits", "/#{path_safe(@cms_config['site_settings']['blog_title'])}")
 %ul.recent_articles.list_of_links.top-four
   - for feature in features[0..3]
     %li.article_for_list
